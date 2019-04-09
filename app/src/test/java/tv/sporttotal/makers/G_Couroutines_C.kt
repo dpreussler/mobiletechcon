@@ -1,40 +1,20 @@
-package tv.sporttotal.android.mobiletechcon
+package tv.sporttotal.makers
 
 import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.spy
 import com.nhaarman.mockitokotlin2.verifyBlocking
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestCoroutineContext
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import kotlin.coroutines.CoroutineContext
 
-class SomethiingCancelled {
+class G_Couroutines_C {
 
-    class Someone : CoroutineScope {
-
-        override var coroutineContext: CoroutineContext = Dispatchers.Default
-
-        fun somethingAsync() =
-            launch {
-                somethingSuspended()
-            }
-
-        // TODO get out the spy here?
-        suspend fun somethingSuspended(): Boolean {
-            delay(100)
-            return true
-        }
-    }
 
     @Nested
     inner class `I dont know what I am doing` {
 
-        val tested = Someone()
+        val tested = Cancellable()
 
         @Test
         fun `check for running`() {
@@ -60,7 +40,7 @@ class SomethiingCancelled {
     @Nested
     inner class `Maybe know` {
 
-        val tested = Someone()
+        val tested = Cancellable()
 
         @BeforeEach
         fun setup() {
@@ -92,6 +72,6 @@ class SomethiingCancelled {
         }
     }
 
-    private val Someone.testCoroutineContext: TestCoroutineContext
+    private val Cancellable.testCoroutineContext: TestCoroutineContext
         get() =  this.coroutineContext as TestCoroutineContext
 }

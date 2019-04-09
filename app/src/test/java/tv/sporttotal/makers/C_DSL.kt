@@ -1,6 +1,7 @@
 package tv.sporttotal.makers
 
 import org.amshove.kluent.`should be`
+import org.amshove.kluent.shouldEqual
 import org.junit.jupiter.api.Test
 
 class C_DSL {
@@ -8,15 +9,16 @@ class C_DSL {
     @Test
     fun test() {
 
-        (Team("Germany") vs Team("France")).isHightlight() `should be` true
+        // TODO build sth nicer
 
-        playing { Team("Germany") vs Team("France") } `is highlight` true
+        playing { Team("Germany") vs Team("France") }.`is highlight`() `should be` true
     }
 
     infix fun Team.vs(team: Team) = Match(this, team)
 
     fun playing(function: () -> Match)  = function
-    infix fun (() -> Match).`is highlight`(boolean: Boolean) = this.invoke().isHightlight()
+
+    fun (() -> Match).`is highlight`() = this.invoke().isHightlight()
 
 
     @Test

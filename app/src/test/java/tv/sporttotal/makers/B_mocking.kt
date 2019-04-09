@@ -13,6 +13,7 @@ import org.mockito.Mockito
 class B_mocking {
 
     // TODO final issue
+    // solutions: inteface, open, mockmaker, open For testing thingie, kotlintestrunner
 
 
     @Test

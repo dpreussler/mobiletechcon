@@ -1,4 +1,4 @@
-package tv.sporttotal.android.mobiletechcon
+package tv.sporttotal.makers
 
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
@@ -6,30 +6,22 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyBlocking
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
-class SomethiingSuspended {
 
-
-    class Someone {
-        suspend fun somethingSuspended() :Boolean {
-            delay(100)
-            return true
-        }
-    }
+class G_Couroutines_A {
 
     @Test
     fun `the boring way`() {
 
         runBlocking {
-            Someone().somethingSuspended()
+            Suspendable().somethingSuspended()
         }
 
-        val mocked = mock<Someone>()
+        val mocked = mock<Suspendable>()
         runBlocking {
             whenever(mocked.somethingSuspended()).doReturn(false)
         }
@@ -45,9 +37,7 @@ class SomethiingSuspended {
     @Test
     fun `the less boring way`() = runBlocking {
 
-        Someone().somethingSuspended()
-
-        val mocked = mock<Someone>()
+        val mocked = mock<Suspendable>()
         whenever(mocked.somethingSuspended()).doReturn(false)
 
         mocked.somethingSuspended()
@@ -59,9 +49,17 @@ class SomethiingSuspended {
     @Test
     fun `the less boring way 2`() = blockingTest {
 
-        Someone().somethingSuspended()
+        val mocked = mock<Suspendable>()
+        whenever(mocked.somethingSuspended()).doReturn(false)
 
-        val mocked = mock<Someone>()
+        mocked.somethingSuspended()
+        verify(mocked).somethingSuspended()
+    }
+
+    @Test
+    fun `the less boring way 3`() = runBlocking<Unit> {
+
+        val mocked = mock<Suspendable>()
         whenever(mocked.somethingSuspended()).doReturn(false)
 
         mocked.somethingSuspended()
@@ -70,7 +68,7 @@ class SomethiingSuspended {
 
     @Test
     fun `the easier way`() {
-        val mocked = mock<Someone> {
+        val mocked = mock<Suspendable> {
             onBlocking {
                 somethingSuspended()
             } doReturn false

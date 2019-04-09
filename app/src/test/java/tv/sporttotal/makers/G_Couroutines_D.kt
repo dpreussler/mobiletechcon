@@ -1,24 +1,23 @@
-package tv.sporttotal.android.mobiletechcon
+package tv.sporttotal.makers
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestCoroutineContext
 import org.amshove.kluent.`should be equal to`
-import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import tv.sporttotal.makers.Image
-import tv.sporttotal.makers.ImageFilter
-import tv.sporttotal.makers.ImageLoader
 import java.util.concurrent.TimeUnit
 
-class SomethiingStructured : CoroutineScope {
+@UseExperimental(ObsoleteCoroutinesApi::class)
+class G_Couroutines_D : CoroutineScope {
+
     override val coroutineContext: TestCoroutineContext = TestCoroutineContext()
 
     val tested = ImageFilter(DummyLoadder())
 
     @Test
-    fun `advance_and_collect`() {
+    fun `advance and collect`() {
         launch {
             tested.loadAndCombine("1", "2").name `should be equal to` "1:2"
         }
