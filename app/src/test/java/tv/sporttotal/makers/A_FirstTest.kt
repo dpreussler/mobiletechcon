@@ -9,32 +9,32 @@ class A_FirstTest {
 
     @Test
     fun test() {
-        LiveGames().hasGames `should be equal to` false
+        Tournament().hasGames `should be equal to` false
     }
 
     @Test
     fun test2() {
 
         // TODO wjhats wrong here?
-//        assertFailsWith<IllegalArgumentException> { LiveGames().getGames() }
+//        assertFailsWith<IllegalArgumentException> { Tournament().getMatches() }
 
-        { LiveGames().getGames() } `should throw` IllegalArgumentException::class
+        { Tournament().getMatches() } `should throw` IllegalArgumentException::class
     }
 
     @Test
     fun testExtension() {
 
-        val tested = LiveGames()
+        val tested = Tournament()
 
         tested.givenGermanyPlaying()
 
-        tested.getGames() `should contain` Game("Germany vs France")
+        tested.getMatches() `should contain` Match("Germany", "France")
 
     }
 
 }
 
-private fun LiveGames.givenGermanyPlaying() {
-    this.add(Game("Germany vs France"))
+private fun Tournament.givenGermanyPlaying() {
+    this.add(Match("Germany", "France"))
 
 }

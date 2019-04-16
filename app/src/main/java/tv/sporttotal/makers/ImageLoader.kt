@@ -23,7 +23,11 @@ class ImageFilter(
             combineImages(deferred1.await(), deferred2.await())
         }
 
-    suspend fun loadAndCombine2(name1: String, name2: String): Image =
+
+
+
+
+    suspend fun loadAndSwitchAndCombine(name1: String, name2: String): Image =
         coroutineScope {
             val deferred1 = async { imageLoader.loadImage(name1) }
             val deferred2 = async { imageLoader.loadImage(name2) }
@@ -33,6 +37,10 @@ class ImageFilter(
                 combineImages(images.first(), images.last())
             }
         }
+
+
+
+
 
     private suspend fun combineImages(name1: Image, name2: Image) : Image {
         delay(3000)

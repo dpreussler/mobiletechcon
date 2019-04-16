@@ -5,12 +5,16 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 
-@Deprecated("")
-class Deferrable {
-    fun somethingDeferred() : Deferred<Boolean> {
+class LiveGame(val match: Match) {
+
+    suspend fun broadcast(): Boolean {
+        delay(90000)
+        return true
+    }
+
+    suspend fun startBroadcasting(): Deferred<Boolean> {
         return GlobalScope.async {
-            delay(100)
-            true
+            broadcast()
         }
     }
 }

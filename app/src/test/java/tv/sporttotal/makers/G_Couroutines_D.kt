@@ -3,18 +3,14 @@ package tv.sporttotal.makers
 import com.nhaarman.mockitokotlin2.spy
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verifyBlocking
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineContext
-import kotlinx.coroutines.test.withTestContext
-import kotlinx.coroutines.withContext
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be greater or equal to`
 import org.junit.jupiter.api.Test
@@ -92,7 +88,7 @@ class G_Couroutines_D : CoroutineScope {
         val tested = ImageFilter(SimpleLoader(), dispatchers)
 
         val job = launch {
-            tested.loadAndCombine2("1", "2").name `should be equal to` "1:3"
+            tested.loadAndSwitchAndCombine("1", "2").name `should be equal to` "1:3"
         }
 
         coroutineContext.triggerActions()
@@ -122,7 +118,7 @@ class G_Couroutines_D : CoroutineScope {
         val tested = ImageFilter(SimpleLoader(), dispatchers)
 
         val job = launch(handler) {
-            tested.loadAndCombine2("1", "2").name `should be equal to` "1:3"
+            tested.loadAndSwitchAndCombine("1", "2").name `should be equal to` "1:3"
         }
 
         coroutineContext.triggerActions()

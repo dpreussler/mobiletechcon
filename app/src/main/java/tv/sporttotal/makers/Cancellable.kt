@@ -6,16 +6,17 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class Cancellable : CoroutineScope {
+class Cancellable(val suspendable: Suspendable? = null) : CoroutineScope {
 
     override var coroutineContext: CoroutineContext = Dispatchers.Default
 
     fun somethingAsync() =
         launch {
-            somethingSuspended()
+            suspendable?.somethingSuspended()
         }
 
     // TODO get out the spy here?
+    @Deprecated("replace")
     suspend fun somethingSuspended(): Boolean {
         delay(100)
         return true
