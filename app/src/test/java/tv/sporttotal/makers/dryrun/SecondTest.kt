@@ -5,37 +5,29 @@ import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyBlocking
 import com.nhaarman.mockitokotlin2.whenever
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentCaptor
 import tv.sporttotal.makers.Match
 import tv.sporttotal.makers.Sponsor
 import tv.sporttotal.makers.Tournament
 
 class SecondTest {
 
+    val tested = Tournament()
+    val sponsor = mock<Sponsor>()
+
     @Test
     fun test() {
-
-        val tested = Tournament()
-
-        val sponsor = mock<Sponsor>()
-        tested.addSponsor(sponsor)
         whenever(sponsor.isPremium).thenReturn(true)
     }
 
     @Test
     fun capturing() {
 
-        val tested = Tournament()
-
-        val sponsor = mock<Sponsor>()
-        tested.addSponsor(sponsor)
         whenever(sponsor.isPremium).thenReturn(true)
 
-        tested.showBannersOf(sponsor)
+        tested.showBannersOfSponsor(sponsor)
 
         argumentCaptor<Int>().apply {
             verify(sponsor).addImpressions(capture())

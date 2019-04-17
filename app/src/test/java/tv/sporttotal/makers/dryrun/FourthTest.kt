@@ -23,7 +23,7 @@ class FourthTest {
 
         @Test
         fun `should create tournament`() {
-            activity.tournament.hasGames `should be` true
+            activity.tournament.hasMatches `should be` true
         }
 
         @TestFactory

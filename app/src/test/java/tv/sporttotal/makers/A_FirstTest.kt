@@ -9,7 +9,7 @@ class A_FirstTest {
 
     @Test
     fun test() {
-        Tournament().hasGames `should be equal to` false
+        Tournament().hasMatches `should be equal to` false
     }
 
     @Test

@@ -1,5 +1,6 @@
 package tv.sporttotal.makers
 
+@Suppress("unused")
 interface Sponsor {
 
     var isPremium: Boolean

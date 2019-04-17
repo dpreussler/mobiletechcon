@@ -13,13 +13,13 @@ class FirstTest {
     @Test
     fun `tournament should have games`() {
         val tested = Tournament()
-        tested.hasGames `should be` true
+        tested.hasMatches `should be` true
     }
 
     @Test
     fun `test`() {
         val tested = Tournament()
-        tested.getMatches() shouldContain Team("Germany")
+        tested.getTeams() shouldContain Team("Germany")
     }
 
     @Test

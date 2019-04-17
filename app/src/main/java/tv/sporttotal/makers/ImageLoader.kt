@@ -1,11 +1,9 @@
 package tv.sporttotal.makers
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.withContext
 
 interface ImageLoader {
@@ -15,6 +13,8 @@ interface ImageLoader {
 class ImageFilter(
     val imageLoader: ImageLoader,
     val dispatchers: CoroutineDispatchers = DefaultCoroutineDispatchers()) {
+
+
 
     suspend fun loadAndCombine(name1: String, name2: String): Image =
         coroutineScope {
